@@ -62,7 +62,7 @@ public class JabatanController {
 	@RequestMapping(value = "/jabatan/hapus", method = RequestMethod.GET)
 	private String hapusJabatan(@RequestParam("idJabatan") long id, Model model) {
 
-		if(jabatanService.findJabatanById(id).getPegawaiList().size() > 0) {
+		if(jabatanService.findJabatanById(id).getSize() > 0) {
 			return "hapus-jabatan-gagal";
 		}
 		

@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.tugas1.model.InstansiModel;
@@ -15,12 +17,17 @@ import com.apap.tugas1.model.PegawaiModel;
 import com.apap.tugas1.service.InstansiService;
 import com.apap.tugas1.service.JabatanService;
 import com.apap.tugas1.service.PegawaiService;
+import com.apap.tugas1.service.ProvinsiService;
 
 
 @Controller
 public class PegawaiController {
 	@Autowired
 	private PegawaiService pegawaiService;
+	
+	@Autowired
+	private ProvinsiService provinsiService;
+	
 	
 	@Autowired
 	private JabatanService jabatanService;
@@ -66,6 +73,48 @@ public class PegawaiController {
 		return "data-pegawai";
 		
 	}
+	
+	@RequestMapping(value = "/pegawai/tambah", method = RequestMethod.GET)
+	private String tambahPegawai(Model model) {
+		PegawaiModel pegawai = new PegawaiModel();
+		pegawai.setInstansi(new InstansiModel());
+		
+		model.addAttribute("pegawai", pegawai);
+		model.addAttribute("listProvinsi", provinsiService.getProvinsiList());
+		model.addAttribute("listJabatan", jabatanService.getAllJabatan());
+		
+		return "tambah-pegawai";
+	}
+	
+	@RequestMapping(value = "/pegawai/tambah", method = RequestMethod.POST)
+	private String addPegwawaiSubmit(@ModelAttribute PegawaiModel pegawai, Model model) {
+		String nip = "";
+		
+		nip += pegawai.getInstansi().getId();
+		
+		String[] tglLahir = pegawai.getTanggalLahir().toString().split("-");
+		String tglLahirString = tglLahir[2] + tglLahir[1] + tglLahir[0].substring(2, 4);
+		nip += tglLahirString;
+
+		nip += pegawai.getTahunMasuk();
+
+		int counterSama = 1;
+		for (PegawaiModel pegawaiInstansi:pegawai.getInstansi().getPegawaiInstansi()) {
+			if (pegawaiInstansi.getTahunMasuk().equals(pegawai.getTahunMasuk()) && pegawaiInstansi.getTanggalLahir().equals(pegawai.getTanggalLahir())) {
+				counterSama += 1;
+			}	
+		}
+		nip += "0" + counterSama;
+
+		for (JabatanModel jabatan:pegawai.getJabatanList()) {
+			System.out.println(jabatan.getNama());
+		}
+		pegawai.setNip(nip);
+		pegawaiService.addPegawai(pegawai);
+		model.addAttribute("pegawai", pegawai);
+		return "tambah-pegawai-sukses";
+	}
+	
 	
 	@RequestMapping("/pegawai/termuda-tertua")
 	private String viewTermudaTertua(@RequestParam("instansi") long id, Model model) {

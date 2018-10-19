@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title th:replace="fragments/fragment :: headerFragment (title='Tambah Jabatan')"></title>
+	
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	
+</head>
+
+<body>
+	
+	<div style="padding: 32px; text-align: center;">
+
+		<div class="alert alert-success">
+			<strong>Tambah Pegawai Sukses!</strong> Pegawai baru telah masuk ke database
+		</div>
+		
+		<span>Redirecting in ... </span>
+		<span id="counter" style="display:inline;"> 5</span>
+		<script>
+			setInterval(function() {
+				var div = document.querySelector("#counter");
+				var count = div.textContent * 1 - 1;
+				div.textContent = count;
+				if (count <= 0) {
+					location.replace("	");
+				}
+			}, 1000);
+		</script>
+
+	</div>
+</body>
+</html>

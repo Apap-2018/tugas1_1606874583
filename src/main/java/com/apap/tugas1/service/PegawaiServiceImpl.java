@@ -21,5 +21,12 @@ public class PegawaiServiceImpl implements PegawaiService {
 		return pegawaiDb.findByNip(nip);
 	}
 
+	@Override
+	public void addPegawai(PegawaiModel pegawai) {
+		pegawaiDb.save(pegawai);
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

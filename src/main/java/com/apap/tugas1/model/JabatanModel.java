@@ -41,20 +41,17 @@ public class JabatanModel implements Serializable{
 			mappedBy = "jabatanList")
 	private List<PegawaiModel> pegawaiList;
 
+	public int getSize() {
+		return this.pegawaiList.size();
+	}
+	
+	
 	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public List<PegawaiModel> getPegawaiList() {
-		return pegawaiList;
-	}
-
-	public void setPegawaiList(List<PegawaiModel> pegawaiList) {
-		this.pegawaiList = pegawaiList;
 	}
 
 	public String getNama() {
