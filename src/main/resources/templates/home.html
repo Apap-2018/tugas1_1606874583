@@ -57,6 +57,26 @@
 					</div>
 				</div>
 			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="card">	
+						<div class="card-header">
+							<h3>Lihat Pegawai Di Instansi</h3>
+						</div>
+						<form th:action="@{/pegawai/termuda-tertua}" method="GET">
+							<div class="card-body">
+								<label for="jabatan">Masukan Nama Instansi</label>
+								<select type="text" name="instansi" class="form-control" >
+								<option th:each="instansi : ${instansiList}" th:value="${instansi.id}"
+										th:text="${instansi.nama}" ></option>
+								</select><br>
+								<button type="submit" class="btn btn-primary">Lihat</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
 			
 			
 			
