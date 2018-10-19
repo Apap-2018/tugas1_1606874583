@@ -29,13 +29,13 @@ public class PegawaiController {
 		return "home";
 	}
 	
-	
-	@RequestMapping("/jabatan")
-	private String viewDeskripsiJabatan(@RequestParam("jabatan") String jabatan, Model model) {
-		JabatanModel jabatanTarget = jabatanService.findJabatanByName(jabatan);
-		model.addAttribute("jabatanTarget", jabatanTarget);
-		return "deskripsi-jabatan";
+	@RequestMapping("/response")
+	private String response(Model model) {
+		List<JabatanModel> jabatanList = jabatanService.getAllJabatan();
+				model.addAttribute("jabatanList", jabatanList);
+		return "response";
 	}
+	
 	
 	@RequestMapping("/pegawai")
 	private String viewDetailPegawai(@RequestParam("nip") String nip, Model model) {

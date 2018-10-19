@@ -21,16 +21,12 @@ public class JabatanServiceImpl implements JabatanService {
 		jabatanDb.save(jabatan);
 		
 	}
-	
-
 
 	@Override
 	public List<JabatanModel> getAllJabatan() {
 		List<JabatanModel> listnya = jabatanDb.findAll();
 		return listnya;
 	}
-
-
 
 	@Override
 	public JabatanModel findJabatanByName(String name) {
@@ -42,6 +38,18 @@ public class JabatanServiceImpl implements JabatanService {
 		}
 		
 		return null;
+	}
+
+	@Override
+	public JabatanModel findJabatanById(long id) {
+		// TODO Auto-generated method stub
+		return jabatanDb.getOne(id);
+	}
+
+	@Override
+	public void deleteJabatanById(long id) {
+		// TODO Auto-generated method stub
+		jabatanDb.deleteById(id);
 	}
 
 

@@ -14,10 +14,12 @@
 	
 	<div style="padding: 32px; text-align: center;">
 
-		<div class="alert alert-success">
-			<strong>Tambah Jabatan Sukses!</strong> Jabatan baru telah masuk ke database
+		<div class="alert alert-danger">
+			<strong>Hapus Gagal!</strong> Jabatan gagal dihapus
 		</div>
 		
+		<h2>Ada pegawai dalam posisi jabatan ini</h2>
+		<br>
 		<span>Redirecting in ... </span>
 		<span id="counter" style="display:inline;"> 5</span>
 		<script>
@@ -26,7 +28,7 @@
 				var count = div.textContent * 1 - 1;
 				div.textContent = count;
 				if (count <= 0) {
-					location.replace("");
+					location.replace("http://localhost:8080");
 				}
 			}, 1000);
 		</script>
