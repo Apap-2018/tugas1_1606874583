@@ -69,7 +69,7 @@ public class PegawaiController {
 	
 	@RequestMapping("/pegawai/termuda-tertua")
 	private String viewTermudaTertua(@RequestParam("instansi") long id, Model model) {
-		InstansiModel instansi = instansiService.findJabatanById(id);
+		InstansiModel instansi = instansiService.findInstansiById(id);
 		List<PegawaiModel> listPegawaiInstansi = instansi.getPegawaiInstansi();
 		
 		PegawaiModel pegawaiMuda;
@@ -90,7 +90,7 @@ public class PegawaiController {
 			
 			model.addAttribute("pegawaiMuda", pegawaiMuda);
 			model.addAttribute("pegawaiTua", pegawaiTua);
-			return "data-pegawai-tertua-termuda";
+			return "data-pegawai-termuda-tertua";
 		}
 				
 		return "response";

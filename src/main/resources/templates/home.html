@@ -47,7 +47,6 @@
 							<div class="card-body">
 								<label for="jabatan">Masukan Nama Jabatan</label>
 								<select type="text" name="jabatan" class="form-control" >
-								<option  >pilih jabatan</option>
 								<option th:each="jabatan : ${jabatanList}" th:value="${jabatan.id}"
 										th:text="${jabatan.nama}" ></option>
 								</select><br>
@@ -66,10 +65,10 @@
 						</div>
 						<form th:action="@{/pegawai/termuda-tertua}" method="GET">
 							<div class="card-body">
-								<label for="jabatan">Masukan Nama Instansi</label>
+								<label for="instansi">Masukan Nama Instansi</label>
 								<select type="text" name="instansi" class="form-control" >
 								<option th:each="instansi : ${instansiList}" th:value="${instansi.id}"
-										th:text="${instansi.nama}" ></option>
+										th:text="${instansi.nama} + ' - '+ ${instansi.provinsi.nama}" ></option>
 								</select><br>
 								<button type="submit" class="btn btn-primary">Lihat</button>
 							</div>

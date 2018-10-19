@@ -5,6 +5,6 @@ import java.util.List;
 import com.apap.tugas1.model.InstansiModel;
 
 public interface InstansiService {
-	InstansiModel findJabatanById(long id);
+	InstansiModel findInstansiById(long id);
 	List<InstansiModel> getAllInstansi();
 }

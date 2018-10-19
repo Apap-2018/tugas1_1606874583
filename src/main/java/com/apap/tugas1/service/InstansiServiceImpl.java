@@ -18,7 +18,7 @@ public class InstansiServiceImpl implements InstansiService {
 	private InstansiDb instansiDb;
 
 	@Override
-	public InstansiModel findJabatanById(long id) {
+	public InstansiModel findInstansiById(long id) {
 		// TODO Auto-generated method stub
 		return instansiDb.getOne(id);
 	}
